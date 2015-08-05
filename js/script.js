@@ -21,7 +21,7 @@ function loadData() {
     
     $greeting.text('So, you want to live in ' + $city);
     // YOUR CODE GOES HERE!
-
+    //Get NYT articles about the searched for city, loop through data response and display article snippets
     var NYTapiURL = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?callback=svc_search_v2_articlesearch&q=' + $city + '&sort=newest&hl=true&api-key=6e556a02265fc4d62ec6a31826b9c67d%3A11%3A72625312';
     
     $.getJSON(NYTapiURL, function(data){
@@ -41,7 +41,11 @@ function loadData() {
         $nytHeaderElem.text('Shit\'s broke, Yo!');
     });
 
-    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + $city + "&prop=revisions&rvprop=content&format=json&utf8=";
+    var wikiRequestTimeout = setTimeout(function(){
+        $wikiElem.text('Failed to get Wikipedia resources');
+    }, 8000);
+    //Get Wikipedia articles about the searched for city, loop through data response and display article links
+    var wikiURL = "ttps://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + $city + "&prop=revisions&rvprop=content&format=json&utf8=";
 
     $.ajax({
         url: wikiURL,
@@ -50,9 +54,10 @@ function loadData() {
             var articleList = data.query.search;
             for (var i = 0, len = articleList.length; i < len; i++) {
                 articleName = articleList[i].title;
-                var URL = 'http://en.wikipedia.org/wiki/' + articleName;
-                $wikiElem.append('<li><a href="' + URL + '">' + articleName + '</a></li>');
+                var wikiURL = 'http://en.wikipedia.org/wiki/' + articleName;
+                $wikiElem.append('<li><a href="' + wikiURL + '">' + articleName + '</a></li>');
             }
+            clearTimeout(wikiRequestTimeout);
         }
     });
 
