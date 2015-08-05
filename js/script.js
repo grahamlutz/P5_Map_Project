@@ -45,7 +45,7 @@ function loadData() {
         $wikiElem.text('Failed to get Wikipedia resources');
     }, 8000);
     //Get Wikipedia articles about the searched for city, loop through data response and display article links
-    var wikiURL = "ttps://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + $city + "&prop=revisions&rvprop=content&format=json&utf8=";
+    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + $city + "&prop=revisions&rvprop=content&format=json&utf8=";
 
     $.ajax({
         url: wikiURL,
