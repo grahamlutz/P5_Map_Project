@@ -29,7 +29,7 @@ function loadData() {
         $nytHeaderElem.text("NYT articles about " + $city);
 
         articles = data.response.docs;
-        for (var i = 0; i < articles.length; i++) {
+        for (var i = 0, len = articles.length; i < len; i++) {
             var article = articles[i];
             $nytElem.append('<li class="article">' + '<a href="' + article.web_url + '">' + 
             article.headline.main + '</a>' + '<p>' + article.snippet + '</p>' + '</li>');
@@ -39,6 +39,21 @@ function loadData() {
         // });
     }).error( function(e) {
         $nytHeaderElem.text('Shit\'s broke, Yo!');
+    });
+
+    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + $city + "&prop=revisions&rvprop=content&format=json&utf8=";
+
+    $.ajax({
+        url: wikiURL,
+        dataType: 'jsonp',
+        success: function(data) {
+            var articleList = data.query.search;
+            for (var i = 0, len = articleList.length; i < len; i++) {
+                articleName = articleList[i].title;
+                var URL = 'http://en.wikipedia.org/wiki/' + articleName;
+                $wikiElem.append('<li><a href="' + URL + '">' + articleName + '</a></li>');
+            }
+        }
     });
 
     return false;
