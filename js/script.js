@@ -1,69 +1,101 @@
+var map;
 
-function loadData() {
+function initMap () {  
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 33.974559, lng: -84.237619},
+    zoom: 10
+  });
 
-    var $body = $('body');
-    var $wikiElem = $('#wikipedia-links');
-    var $nytHeaderElem = $('#nytimes-header');
-    var $nytElem = $('#nytimes-articles');
-    var $greeting = $('#greeting');
+  var infoWindow = {
+    homeSweetHome: new google.maps.InfoWindow ({
+      content: "Home Sweet Home"
+    }),
+    college: new google.maps.InfoWindow ({
+      content: "Georgia State University"
+    }),
+    highSchool: new google.maps.InfoWindow ({
+      content: "Providence Christian Academy"
+    }),
+    eastLake: new google.maps.InfoWindow ({
+      content: "East Lake Golf Club"
+    }),
+    formulaCrossFit: new google.maps.InfoWindow ({
+      content: "Formula CrossFit"
+    }),
+  }
 
-    // clear out old data before new request
-    $wikiElem.text("");
-    $nytElem.text("");
+  var homeSweetHome = new google.maps.Marker ({
+    position: {lat: 33.974559, lng: -84.237619},
+    map: map, 
+    animation: google.maps.Animation.DROP,
+    title: "Childhood Home",
+    label: "A"
+  });
+  homeSweetHome.addListener('click', function() {
+    infoWindow.homeSweetHome.open(map, homeSweetHome);
+  });
+  homeSweetHome.addListener('click', toggleBounce);
 
-    // load streetview
-    
-    var $street = $('#street').val();
-    var $city = $('#city').val();
-    var address = $street + ',' + $city;
+  var college = new google.maps.Marker ({
+    position: {lat: 33.754341, lng: -84.381287},
+    map: map,
+    animation: google.maps.Animation.DROP,
+    title: "Georgia Statue University",
+    label: "B"
+  });
+  college.addListener('click', function() {
+    infoWindow.college.open(map, college);
+  });
+  college.addListener('click', toggleBounce);
 
-    $('body').append('<img class="bgimg" src="https://maps.googleapis.com/maps/api/streetview?size=600x400&location=' + address + '">');
-    
-    $greeting.text('So, you want to live in ' + $city);
-    // YOUR CODE GOES HERE!
-    //Get NYT articles about the searched for city, loop through data response and display article snippets
-    var NYTapiURL = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?callback=svc_search_v2_articlesearch&q=' + $city + '&sort=newest&hl=true&api-key=6e556a02265fc4d62ec6a31826b9c67d%3A11%3A72625312';
-    
-    $.getJSON(NYTapiURL, function(data){
+  var highSchool = new google.maps.Marker ({
+    position: {lat: 33.900803, lng: -84.134659},
+    map: map,
+    animation: google.maps.Animation.DROP,
+    title: "Providence Christian Academy",
+    label: "C"
+  });
+  highSchool.addListener('click', function() {
+    infoWindow.highSchool.open(map, highSchool);
+  });
+  highSchool.addListener('click', toggleBounce);
 
-        $nytHeaderElem.text("NYT articles about " + $city);
+  var eastLake = new google.maps.Marker ({
+    position: {lat: 33.743521, lng: -84.302776},
+    map: map,
+    animation: google.maps.Animation.DROP,
+    title: "East Lake Golf Club",
+    label: "D"
+  });
+  eastLake.addListener('click', function() {
+    infoWindow.eastLake.open(map, eastLake);
+  });
+  eastLake.addListener('click', toggleBounce);
 
-        articles = data.response.docs;
-        for (var i = 0, len = articles.length; i < len; i++) {
-            var article = articles[i];
-            $nytElem.append('<li class="article">' + '<a href="' + article.web_url + '">' + 
-            article.headline.main + '</a>' + '<p>' + article.snippet + '</p>' + '</li>');
-        }
-        // $.each(data, function(key, val) {
-        //     console.log(key, val);
-        // });
-    }).error( function(e) {
-        $nytHeaderElem.text('Shit\'s broke, Yo!');
-    });
+  var formulaCrossFit = new google.maps.Marker ({
+    position: {lat: 33.938575, lng: -84.236546},
+    map: map,
+    animation: google.maps.Animation.DROP,
+    title: "Formula CrossFit",
+    label: "E"
+  });
+  formulaCrossFit.addListener('click', function() {
+    infoWindow.formulaCrossFit.open(map, formulaCrossFit);
+  });
+  formulaCrossFit.addListener('click', toggleBounce);
 
-    var wikiRequestTimeout = setTimeout(function(){
-        $wikiElem.text('Failed to get Wikipedia resources');
-    }, 8000);
-    //Get Wikipedia articles about the searched for city, loop through data response and display article links
-    var wikiURL = "https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=" + $city + "&prop=revisions&rvprop=content&format=json&utf8=";
+  function toggleBounce() {
+    if (this.getAnimation() !== null) {
+      this.setAnimation(null);
+    } else {
+      this.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  }
+}
 
-    $.ajax({
-        url: wikiURL,
-        dataType: 'jsonp',
-        success: function(data) {
-            var articleList = data.query.search;
-            for (var i = 0, len = articleList.length; i < len; i++) {
-                articleName = articleList[i].title;
-                var wikiURL = 'http://en.wikipedia.org/wiki/' + articleName;
-                $wikiElem.append('<li><a href="' + wikiURL + '">' + articleName + '</a></li>');
-            }
-            clearTimeout(wikiRequestTimeout);
-        }
-    });
 
-    return false;
-};
 
-$('#form-container').submit(loadData);
-
-// loadData();
+function mapViewModel() {
+  
+}
+ko.applyBindings(new mapViewModel());
