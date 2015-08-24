@@ -10,7 +10,12 @@ html, body, #map-canvas {
 
 .list {
 	width: 300px;
-	opacity: 0.75;
+	opacity: 0.85;
 	z-index: 999;
 	position: absolute;
+}
+
+.info-window {
+	max-width: 320px;
+	padding-top: 20px;
 }

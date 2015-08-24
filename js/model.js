@@ -2,6 +2,17 @@ var places = function () {
   var map;
   this.starterLocations = [
     {
+      name: "gym",
+      position: {lat: 34.002879, lng: -84.144638},
+      lat: "33.754341",
+      lang: "-84.381287",
+      map: map,
+      title: "Lifetime Fitness",
+      hashtag: "lifetimefitness",
+      city: "Duluth",
+      label: "A"
+    },
+    {
       name: "college",
       position: {lat: 33.754341, lng: -84.381287},
       lat: "33.754341",
@@ -47,7 +58,7 @@ var places = function () {
     }
   ];
 
-  this.markers = [];
+  this.placeMarkers = [];
 
   this.mapOptions = {
     center: {lat: 33.754341, lng: -84.381287},
@@ -65,9 +76,9 @@ places.prototype.initMap = function() {
 places.prototype.initMarkers = function() {
   for (var i = 0, len = this.starterLocations.length; i < len; i++) {
     var marker = new google.maps.Marker(this.starterLocations[i]);
-    this.markers.push(marker);
+    this.placeMarkers.push(marker);
   }
-  //console.log(this.markers);
+  console.log(this.placeMarkers);
 }
 
 var myPlaces = new places ();

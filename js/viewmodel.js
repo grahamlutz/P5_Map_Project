@@ -1,8 +1,8 @@
 function mapViewModel() {
 	var self = this;
 
-	this.markers = ko.observableArray(myPlaces.markers);
-	//console.log(this.markers);
+	self.markers = ko.observableArray(myPlaces.placeMarkers);
+	//console.log("tada!" + this.markers()[1].title);
 	for( var i = 0; i < self.markers().length; i++) {
 		self.markers()[i].showItem = ko.observable(true);
         self.markers()[i].setMap(myPlaces.map);
@@ -20,15 +20,14 @@ function mapViewModel() {
 
 	function addMarkerListener(marker) {
         google.maps.event.addListener(marker, 'click', function() {
-            self.infoWindow().setContent(iWContent);
             self.showInfoWindow(marker);
-
         });
     }
 
+    self.searchInput = ko.observable();
 	self.infoWindow = ko.observable(myPlaces.infoWindow);
 	//console.log(myPlaces.infoWindow);
-	var iWContent = "";
+	var iWContent = "Loading instagram data...";
 
 	self.showInfoWindow = function(marker) {
 		var currentMarker = marker;
@@ -40,8 +39,11 @@ function mapViewModel() {
     		success: function(data) {
     			//console.log(data);
     			//console.log(data.data[0].link);
-    			iWContent = '<a href="' + data.data[0].link + '">#' + data.data[0].tags[0] + '</a>' +  ' ' + data.data[0].caption.text;
+    			iWContent = '<img src="' + data.data[0].images.low_resolution.url + '"><div class="info-window"><a href="' + data.data[0].link + '">#' + data.data[0].tags[0] + '</a>' +  ' ' + data.data[0].caption.text + '</div>';
     			//console.log(iWContent);
+    			self.infoWindow().setContent(iWContent);
+    			self.infoWindow().open(myPlaces.map, currentMarker);
+
     		},
     		error: function(data2) {
     			alert("Cannot get Instagram images...");
@@ -49,9 +51,13 @@ function mapViewModel() {
 		})
 		// self.infoWindow().setContent(iWContent);
 		//console.log(self.infoWindow());
-		self.infoWindow().open(myPlaces.map, currentMarker);
+		//self.infoWindow().open(myPlaces.map, currentMarker);
 	}
 
+	self.filter = function() {
+		//if indexOf(seachInput value), setVisible, showItem.
+		console.log("Huzzah!");
+	}
 }
 
 ko.applyBindings(new mapViewModel());
