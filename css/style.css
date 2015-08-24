@@ -3,3 +3,14 @@ html, body, #map-canvas {
     margin: 0;
     padding: 0;
 }
+
+.navbar-default {
+    margin-bottom: 0px !important;
+}
+
+.list {
+	width: 300px;
+	opacity: 0.75;
+	z-index: 999;
+	position: absolute;
+}

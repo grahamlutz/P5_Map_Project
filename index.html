@@ -14,7 +14,7 @@
       <div class="container-fluid">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <button type="button" class="btn btn-default" data-bind="click: ''" aria-label="Left Align">
+            <button type="button" class="btn btn-default" data-bind="click: showMenuVis" aria-label="Left Align">
               <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
             </button>
             <input type="text" class="form-control" placeholder="Search" data-bind="">
@@ -25,12 +25,18 @@
         </form>
       </div>
     </nav>
+    <!-- <div class="list" id="listView" data-bind="visible: menuVis">
+      <ul data-bind="foreach: markers">
+        <a href="#" class="list-group-item" data-bind="text: title, click: showInfoWindow, visible: showItem"></a>
+      </ul>
+    </div>  -->
 	<div id="map-canvas"></div>
-
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.0.0.js"type="text/javascript"></script>
 	<script src="js/model.js" type="text/javascript"></script>
 	<script src="js/viewmodel.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js" type="text/javascript"></script>
+	
 	<!--<script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB7WNg7d6UE317dokmTulDJfXxiG6eKjg">
     </script> -->

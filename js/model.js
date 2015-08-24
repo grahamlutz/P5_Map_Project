@@ -2,19 +2,14 @@ var places = function () {
   var map;
   this.starterLocations = [
     {
-      name: "homeSweetHome",
-      position: {lat: 33.974559, lng: -84.237619},
-      map: map,
-      title: "Childhood Home",
-      label: "A"
-    },
-    {
       name: "college",
       position: {lat: 33.754341, lng: -84.381287},
       lat: "33.754341",
       lang: "-84.381287",
       map: map,
       title: "Georgia State University",
+      hashtag: "GSU",
+      city: "Atlanta",
       label: "B"
     },
     {
@@ -24,6 +19,8 @@ var places = function () {
       lang: "-84.134659",
       map: map,
       title: "Providence Christian Academy",
+      hashtag: "providencechristianacademy",
+      city: "Lilburn",
       label: "C"
     },
     {
@@ -33,6 +30,8 @@ var places = function () {
       lang: "-84.302776",
       map: map,
       title: "East Lake Golf Club",
+      hashtag: "eastlakegolfclub",
+      city: "Atlanta",
       label: "D"
     },
     {
@@ -42,6 +41,8 @@ var places = function () {
       lang: "-84.236546",
       map: map,
       title: "Formula CrossFit",
+      hashtag: "formulacrossfit",
+      city: "Norcross",
       label: "E"
     }
   ];
@@ -56,10 +57,11 @@ var places = function () {
   this.infoWindow = new google.maps.InfoWindow();
 };
 
+//Initialize and show new google map via API
 places.prototype.initMap = function() {
   this.map = new google.maps.Map(document.getElementById('map-canvas'), this.mapOptions);
 }
-
+//initialize markers via loop through starterLocations
 places.prototype.initMarkers = function() {
   for (var i = 0, len = this.starterLocations.length; i < len; i++) {
     var marker = new google.maps.Marker(this.starterLocations[i]);
