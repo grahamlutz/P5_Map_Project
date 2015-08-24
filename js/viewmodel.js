@@ -20,7 +20,9 @@ function mapViewModel() {
 
 	function addMarkerListener(marker) {
         google.maps.event.addListener(marker, 'click', function() {
+            self.infoWindow().setContent(iWContent);
             self.showInfoWindow(marker);
+
         });
     }
 
@@ -45,7 +47,7 @@ function mapViewModel() {
     			alert("Cannot get Instagram images...");
     		}
 		})
-		self.infoWindow().setContent(iWContent);
+		// self.infoWindow().setContent(iWContent);
 		//console.log(self.infoWindow());
 		self.infoWindow().open(myPlaces.map, currentMarker);
 	}

@@ -17,17 +17,17 @@
             <button type="button" class="btn btn-default" data-bind="click: showMenuVis" aria-label="Left Align">
               <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
             </button>
-            <input type="text" class="form-control" placeholder="Search" data-bind="">
-            <button type="button" class="btn btn-default" aria-label="Left Align" data-bind="click: ">
+            <input type="text" class="form-control" placeholder="Search" data-bind="event: {keyup: filter}, textInput: searchInput">
+            <button type="button" class="btn btn-default" aria-label="Left Align" data-bind="click: filter">
               <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </button>
           </div>
         </form>
       </div>
     </nav>
-    <!-- <div class="list" id="listView" data-bind="visible: menuVis">
+    <!-- <div id="listView" data-bind="visible: menuVis">
       <ul data-bind="foreach: markers">
-        <a href="#" class="list-group-item" data-bind="text: title, click: showInfoWindow, visible: showItem"></a>
+        <a href="#" data-bind="text: title, click: showInfoWindow, visible: showItem"></a>
       </ul>
     </div>  -->
 	<div id="map-canvas"></div>
