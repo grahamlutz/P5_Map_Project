@@ -11,7 +11,6 @@ html, body, #map-canvas {
 
 .list {
 	width: 300px;
-	background-color: #000;
 	z-index: 999;
 	position: absolute;
 }
