@@ -14,12 +14,12 @@
       <div class="container-fluid">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <button type="button" class="btn btn-default" data-bind="click: showMenuVis" aria-label="Left Align">
-              <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            <button type="button" class="btn btn-default" data-bind="click: showMenuVis">
+              <span class="glyphicon glyphicon-menu-hamburger"></span>
             </button>
-            <input type="text" class="form-control" placeholder="Search" data-bind="event: {keyup: filter}, textInput: searchInput">
-            <button type="button" class="btn btn-default" aria-label="Left Align" data-bind="click: filter">
-              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+            <input type="text" class="form-control" placeholder="Search" data-bind="textInput: $parent.searchInput, event: {keyup: filter}">
+            <button type="button" class="btn btn-default" data-bind="click: filter">
+              <span class="glyphicon glyphicon-search" ></span>
             </button>
           </div>
         </form>

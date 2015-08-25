@@ -24,7 +24,6 @@ function mapViewModel() {
         });
     }
 
-    self.searchInput = ko.observable();
 	self.infoWindow = ko.observable(myPlaces.infoWindow);
 	//console.log(myPlaces.infoWindow);
 	var iWContent = "Loading instagram data...";
@@ -54,9 +53,24 @@ function mapViewModel() {
 		//self.infoWindow().open(myPlaces.map, currentMarker);
 	}
 
+	self.searchInput = ko.observable();
+
 	self.filter = function() {
 		//if indexOf(seachInput value), setVisible, showItem.
-		console.log("Huzzah!");
+		var inputValue = self.searchInput();
+		console.log(inputValue);
+		for (var i in self.markers()) {
+            if(self.markers()[i].title.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
+            	console.log(self.markers()[i]);
+            	console.log(self.markers()[i].title.toLowerCase().indexOf(inputValue));
+                self.markers()[i].showItem(true);
+                self.markers()[i].setVisible(true);
+            } else {
+                self.markers()[i].showItem(false);
+                self.markers()[i].setVisible(false);
+                self.infoWindow().close();
+            }
+        }
 	}
 }
 
