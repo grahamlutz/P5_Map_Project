@@ -8,7 +8,7 @@ function mapViewModel() {
         self.markers()[i].setMap(myPlaces.map);
         addMarkerListener(self.markers()[i]);
 	};
-
+	//display locations in the list menu
 	self.menuVis = ko.observable(false);
 	self.showMenuVis = function() {
 		if(!self.menuVis()){
@@ -30,6 +30,7 @@ function mapViewModel() {
 
 	self.showInfoWindow = function(marker) {
 		var currentMarker = marker;
+		//Instagram API call.  
 		$.ajax({
 			url: 'https://api.instagram.com/v1/tags/' + currentMarker.hashtag + '/media/recent?',
 			dataType: 'jsonp',
@@ -53,16 +54,16 @@ function mapViewModel() {
 		//self.infoWindow().open(myPlaces.map, currentMarker);
 	}
 
-	self.searchInput = ko.observable();
-
+	this.searchInput = ko.observable();
+	
 	self.filter = function() {
 		//if indexOf(seachInput value), setVisible, showItem.
 		var inputValue = self.searchInput();
 		console.log(inputValue);
 		for (var i in self.markers()) {
             if(self.markers()[i].title.toLowerCase().indexOf(inputValue.toLowerCase()) >= 0) {
-            	console.log(self.markers()[i]);
-            	console.log(self.markers()[i].title.toLowerCase().indexOf(inputValue));
+            	//console.log(self.markers()[i]);
+            	//console.log(self.markers()[i].title.toLowerCase().indexOf(inputValue));
                 self.markers()[i].showItem(true);
                 self.markers()[i].setVisible(true);
             } else {
@@ -75,3 +76,5 @@ function mapViewModel() {
 }
 
 ko.applyBindings(new mapViewModel());
+
+
