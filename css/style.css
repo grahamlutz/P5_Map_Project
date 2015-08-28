@@ -19,3 +19,25 @@ html, body, #map-canvas {
 	max-width: 320px;
 	padding-top: 20px;
 }
+
+.instagram {
+	max-width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+	.info-window {
+		max-width: 290px;
+	}
+
+	.instagram {
+		max-width: 100%;
+	}
+
+	img {
+		width: 200px;
+	}
+
+	.form-control {
+		max-width: 80%;
+	}
+}
