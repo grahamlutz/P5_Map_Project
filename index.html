@@ -7,35 +7,35 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB7WNg7d6UE317dokmTulDJfXxiG6eKjg">
-    </script>
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-          	 <div class="row">
-          		 <div class="col-xs-3">
-		            <button type="button" class="btn btn-default" data-bind="click: showMenuVis">
-		              <span class="glyphicon glyphicon-menu-hamburger"></span>
-		            </button>
-	        	</div>
-	            <!--<button type="button" class="btn btn-default" data-bind="click: filter">
-	              <span class="glyphicon glyphicon-search" ></span>
-	            </button> -->
-	            <div class="col-xs-9">
-	            	<input type="text" class="form-control" placeholder="Search" data-bind="event: {keyup: filter}, textInput: searchInput">
-	            </div>
-        	</div>
-          </div>
-        </form>
-      </div>
-    </nav>
-    <div class="list" id="listView" data-bind="visible: menuVis">
-      <ul data-bind="foreach: markers">
-        <a href="#" class="list-group-item" data-bind="text: title, click: $parent.showInfoWindow, visible: showItem"></a>
-      </ul>
-    </div> 
+		<div class="container-fluid">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-xs-3">
+							<button type="button" class="btn btn-default" data-bind="click: showMenuVis">
+								<span class="glyphicon glyphicon-menu-hamburger"></span>
+							</button>
+						</div>
+						<!--<button type="button" class="btn btn-default" data-bind="click: filter">
+							<span class="glyphicon glyphicon-search" ></span>
+						</button> -->
+						<div class="col-xs-9">
+							<input type="text" class="form-control" placeholder="Search" data-bind="event: {keyup: filter}, textInput: searchInput">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</nav>
+	<div class="list" id="listView" data-bind="visible: menuVis">
+		<ul data-bind="foreach: markers">
+		<a href="#" class="list-group-item" data-bind="text: title, click: $parent.showInfoWindow, visible: showItem"></a>
+		</ul>
+	</div> 
 	<div id="map-canvas"></div>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-3.3.0.js"type="text/javascript"></script>

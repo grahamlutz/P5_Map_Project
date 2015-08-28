@@ -1,12 +1,12 @@
 html, body, #map-canvas {
-    height: 100%;
-    margin-top: 0;
-    padding: 0;
+	height: 100%;
+	margin-top: 0;
+	padding: 0;
 }
 
 .navbar-inverse {
-    margin-bottom: 0px !important;
-    border-radius: 0% !important;
+	margin-bottom: 0px !important;
+	border-radius: 0% !important;
 }
 
 .list {
